@@ -67,8 +67,8 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nc-icon nc-zoom-split"></i>
-                                    <span class="d-lg-block">&nbsp;
-                                        <input type="text" name="search" placeholder="Search">
+                                    <span class="d-lg-block">&nbsp;&nbsp;&nbsp;
+                                        <input class="search" type="text" name="search" placeholder="Search">
                                     </span>
                                 </a>
                             </li>

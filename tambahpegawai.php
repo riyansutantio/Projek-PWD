@@ -2,8 +2,10 @@
 <html>
 <head>
     <?php  
-        require 'config.php';
-        $result = mysqli_query($conn,"SELECT*FROM pegawai");
+       require 'config.php';
+       //menampilkan data pegawai
+        $result = mysqli_query($conn, "SELECT * FROM pegawai");
+        
     ?>
 	<title>Human Resource Management</title>
 	<meta charset="utf-8" />
@@ -118,7 +120,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="logout.php">
+                                <a class="nav-link" href="#pablo">
                                     <span class="no-icon">Log out</span>
                                 </a>
                             </li>
@@ -127,47 +129,123 @@
                 </div>
             </nav>
             <!-- End Navbar -->
-
             <!-- isi Content -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="section">
-                        <p align="center" class="content-data">Data Pegawai</p>  
-                        <table class="table">
-                        <thead>
-                            <tr>
-                              <th scope="col">ID</th>
-                              <th scope="col">Nama Pegawai</th>
-                              <th scope="col">NIP</th>
-                              <th scope="col">Jenis Kelamin</th>
-                              <th scope="col">Alamat</th>
-                              <th scope="col">No Hp</th>
-                              <th scope="col">Divisi</th>
-                              <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <?php  
-                            $i =1;
-                            while ($row = mysqli_fetch_array($result)) { ?>
-                        <tbody>
-                            <td><?= $i ?></td>
-                            <td><?= $row["nama"]; ?></td>
-                            <td><?= $row["nip"]; ?></td>
-                            <td><?= $row["jenis_kelamin"]; ?></td>
-                            <td><?= $row["alamat"]; ?></td>
-                            <td><?= $row["no_hp"]; ?></td>
-                            <td><?= $row["divisi"]; ?></td>
-                            <td>
-                                <a href="edit.php?id=<?= $row['id'];?>">
-                                    <button type="button" class="btn btn-warning">Edit</button>
-                                </a>
-                                <a href="hapuspegawai.php?id=<?= $row['id'];?>" onclick='return confirm("apakah anda ingin menghapus data?")'>
-                                    <button type="button" class="btn btn-danger" style="margin-left: 10px;">Hapus</button>
-                                </a>
-                            </td>
-                            <?php $i++; } ?>
-                        </tbody>
-                        </table>
+                        <p align="center" class="content-data">Tambah Data Pegawai</p>  
+                        <form method="POST" action="tambahpegawai.php" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="<?= $id;?>">
+                            <center>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <label>Nama Pegawai</label></td>
+                                        <td>
+                                            <input type="text" name="nama" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>NIP</label></td>
+                                        <td>
+                                            <input type="text" name="nip" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Jenis Kelamin</label></td>
+                                        <td>
+                                            <input type="text" name="jenis_kelamin" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>alamat</label></td>
+                                        <td>
+                                            <input type="text" name="alamat" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>no hp</label></td>
+                                        <td>
+                                            <input type="text" name="no_hp" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>divisi</label></td>
+                                        <td>
+                                            <select name='divisi'>
+                                                <option value="">---Pilih Divisi---</option>
+                                                <?php  
+                                                    $sql = "SELECT*FROM divisi";
+                                                    $retval = mysqli_query($conn,$sql);
+                                                    while ($row = mysqli_fetch_array($retval)) {
+                                                        echo "<option value='$nama_divisi'>($row[nama_divisi])</option>";
+                                                    }
+                                                ?>
+                                            </select><br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>    
+                                            <input type="submit" name="submit" value="Tambah Data"></input>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <hr>
+                                <p align="center" class="content-data">Data Pegawai</p>  
+                                <table class="table">
+                                <thead>
+                                    <tr>
+                                      <th scope="col">ID</th>
+                                      <th scope="col">Nama Pegawai</th>
+                                      <th scope="col">NIP</th>
+                                      <th scope="col">Jenis Kelamin</th>
+                                      <th scope="col">Alamat</th>
+                                      <th scope="col">No Hp</th>
+                                      <th scope="col">Divisi</th>
+                                    </tr>
+                                </thead>
+                                <?php  
+                                    $i =1;
+                                    while ($row = mysqli_fetch_array($result)) { ?>
+                                        <tbody>
+                                            <td><?= $i ?></td>
+                                            <td><?= $row["nama"]; ?></td>
+                                            <td><?= $row["nip"]; ?></td>
+                                            <td><?= $row["jenis_kelamin"]; ?></td>
+                                            <td><?= $row["alamat"]; ?></td>
+                                            <td><?= $row["no_hp"]; ?></td>
+                                            <td><?= $row["divisi"]; ?></td>
+                                            <?php $i++; } ?>
+                                        </tbody>
+                                        </table>
+                            </center>
+                        </form>
+                            <?php  
+                                error_reporting(E_ALL^E_NOTICE);
+                                $nama = $_POST['nama'];
+                                $nip = $_POST['nip'];
+                                $jenis_kelamin = $_POST['jenis_kelamin'];
+                                $alamat = $_POST['alamat'];
+                                $no_hp = $_POST['no_hp'];
+                                $divisi = $_POST['divisi'];
+                                $submit = $_POST['submit'];
+
+                                $insert ="INSERT INTO pegawai(id, nama, nip, jenis_kelamin, alamat, no_hp, divisi) VALUES ('','$nama','$nip','$jenis_kelamin','$alamat','$no_hp','$divisi')"; 
+
+                                if (isset($submit)) {
+                                    mysqli_query($conn,$insert);
+                                    echo "<script>
+                                        alert('Data berhasil ditambahkan');
+                                        document.location.href='DataPegawai.php';
+                                    </script>";
+                                }
+                            ?>
                     </div>
                 </div>
             </div>

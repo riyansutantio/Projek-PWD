@@ -3,7 +3,26 @@
 <head>
     <?php  
         require 'config.php';
-        $result = mysqli_query($conn,"SELECT*FROM pegawai");
+
+        // apabila tombol submit di tekan
+        if (isset($_POST['submit'])) {
+            $id = $_POST['id'];
+            $nama = $_POST['nama'];
+            $nip = $_POST['nip'];
+            $jenis_kelamin = $_POST['jenis_kelamin'];
+            $alamat = $_POST['alamat'];
+            $no_hp = $_POST['no_hp'];
+            $divisi = $_POST['divisi'];
+
+            $query= "UPDATE pegawai SET nama='$nama', nip='$nip', jenis_kelamin='$jenis_kelamin',alamat='$alamat', no_hp='$no_hp', divisi='$divisi' WHERE id='$id'";
+            mysqli_query($conn, $query);
+            header("location: DataPegawai.php");
+        }
+
+        //menampilkan data pegawai
+        $id = $_GET['id'];
+        $result = mysqli_query($conn, "SELECT * FROM pegawai WHERE id=$id");
+        
     ?>
 	<title>Human Resource Management</title>
 	<meta charset="utf-8" />
@@ -109,7 +128,7 @@
                                     <span class="no-icon">Edit Data</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="tambahpegawai.php">Tambah Data</a>
+                                    <a class="dropdown-item" href="#">Action</a>
                                     <a class="dropdown-item" href="#">Another action</a>
                                     <a class="dropdown-item" href="#">Something</a>
                                     <a class="dropdown-item" href="#">Something else here</a>
@@ -118,7 +137,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="logout.php">
+                                <a class="nav-link" href="#pablo">
                                     <span class="no-icon">Log out</span>
                                 </a>
                             </li>
@@ -127,47 +146,89 @@
                 </div>
             </nav>
             <!-- End Navbar -->
-
             <!-- isi Content -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="section">
                         <p align="center" class="content-data">Data Pegawai</p>  
-                        <table class="table">
-                        <thead>
-                            <tr>
-                              <th scope="col">ID</th>
-                              <th scope="col">Nama Pegawai</th>
-                              <th scope="col">NIP</th>
-                              <th scope="col">Jenis Kelamin</th>
-                              <th scope="col">Alamat</th>
-                              <th scope="col">No Hp</th>
-                              <th scope="col">Divisi</th>
-                              <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <?php  
-                            $i =1;
-                            while ($row = mysqli_fetch_array($result)) { ?>
-                        <tbody>
-                            <td><?= $i ?></td>
-                            <td><?= $row["nama"]; ?></td>
-                            <td><?= $row["nip"]; ?></td>
-                            <td><?= $row["jenis_kelamin"]; ?></td>
-                            <td><?= $row["alamat"]; ?></td>
-                            <td><?= $row["no_hp"]; ?></td>
-                            <td><?= $row["divisi"]; ?></td>
-                            <td>
-                                <a href="edit.php?id=<?= $row['id'];?>">
-                                    <button type="button" class="btn btn-warning">Edit</button>
-                                </a>
-                                <a href="hapuspegawai.php?id=<?= $row['id'];?>" onclick='return confirm("apakah anda ingin menghapus data?")'>
-                                    <button type="button" class="btn btn-danger" style="margin-left: 10px;">Hapus</button>
-                                </a>
-                            </td>
-                            <?php $i++; } ?>
-                        </tbody>
-                        </table>
+                        <p align="center" class="content-data">Form Edit Data</p> 
+                        <?php
+                        while ($p = mysqli_fetch_array($result)) {
+                            error_reporting(E_ALL ^ E_NOTICE);
+                            $id = $p['id'];
+                            $nama = $p['nama'];
+                            $nip = $p['nip'];
+                            $jenis_kelamin = $p['jenis_kelamin'];
+                            $alamat = $p['alamat'];
+                            $no_hp = $p['no_hp']; 
+                            $divisi = $p['divisi'];                        
+                        }
+                        ?>
+                        <form method="POST" action="edit.php">
+                            <center>
+                                <input type="hidden" name="id" disabled value="<?= $id;?>">
+                                <table>
+                                    <tr>
+                                        <td>Nama</td>
+                                        <td>:</td>
+                                        <td>
+                                            <input type="text" name="nama" value="<?= $nama; ?>">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>NIP</td>
+                                        <td>:</td>
+                                        <td>
+                                            <input type="text" name="nip" value="<?= $nip; ?>">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jenis Kelamin</td>
+                                        <td>:</td>
+                                        <td>
+                                            <input type="text" name="jenis_kelamin" value="<?= $jenis_kelamin; ?>">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alamat</td>
+                                        <td>:</td>
+                                        <td>
+                                            <input type="text" name="alamat" value="<?= $alamat; ?>">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>No Hp</td>
+                                        <td>:</td>
+                                        <td>
+                                            <input type="text" name="no_hp" value="<?= $no_hp; ?>">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Divisi</td>
+                                        <td>:</td>
+                                        <td>
+                                            <select name='divisi'>
+                                                <option value="">---Pilih Divisi---</option>
+                                                <?php  
+                                                    $sql = "SELECT*FROM divisi";
+                                                    $retval = mysqli_query($conn,$sql);
+                                                    while ($row = mysqli_fetch_array($retval)) {
+                                                        echo "<option value='$nama_divisi'>($row[nama_divisi])</option>";
+                                                    }
+                                                ?>
+                                            </select><br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <input type="submit" name="submit" value="Simpan Data">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </center>
+                        </form>
                     </div>
                 </div>
             </div>

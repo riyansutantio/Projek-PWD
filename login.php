@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<?php  
+		include 'config.php';
+	?>
 	<title>Login Page</title>
 	<meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -20,31 +23,51 @@
 	<div class="bg-login">
 		<div class="bg-form">
 			<p class="login-page">Login Page</p>
-			<table class="table-login" align="Center">
-				<tr >
-					<td>Username</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="text" name="username" size="35">
-					</td>
-				</tr>
-				<tr>
-					<td>Password</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="Password" name="password" size="35">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="real.php">
-							<input class="btn-login" type="submit" name="submit" value="Login" size="20">
-						</a>
-					</td>
-				</tr>
-			</table>
+			<form method="post" action="login.php">
+				<table class="table-login" align="Center">
+					<tr >
+						<td>Username</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" name="username" size="35">
+						</td>
+					</tr>
+					<tr>
+						<td>Password</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="Password" name="password" size="35">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="real.php">
+								<input class="btn-login" type="submit" name="submit" value="Login" size="20">
+							</a>
+						</td>
+					</tr>
+				</table>
+			</form>
+			
+			<?php 
+				 
+				$username = $_POST['username'];
+				$password = md5($_POST['password']);
+				 
+				$login = mysql_query("SELECT * FROM admin WHERE username='$username' AND password='$password'");
+				$cek = mysql_num_rows($login);
+				 
+				if($cek > 0){
+					alert("Berhasil login");
+					header("location:real.php");
+				}else{
+					alert("Gagal Login, Coba ulang");
+					header("location:login.php");	
+				}
+				 
+			?>
 		</div>
 	</div>
 </body>
