@@ -28,7 +28,7 @@
         <div class="sidebar" data-image="img/sidebar-5.jpg">
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="real.php" class="simple-text">
+                    <a href="home.php" class="simple-text">
                       Human Resource Management
                     </a>
                 </div>
@@ -65,39 +65,15 @@
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#pablo">Template</a>
-                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                    </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <ul class="nav navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-palette"></i>
-                                    <span class="d-lg-none">Dashboard</span>
-                                </a>
-                            </li>
-                            <li class="dropdown nav-item">
-                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-planet"></i>
-                                    <span class="notification">5</span>
-                                    <span class="d-lg-none">Notification</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Notification 1</a>
-                                    <a class="dropdown-item" href="#">Notification 2</a>
-                                    <a class="dropdown-item" href="#">Notification 3</a>
-                                    <a class="dropdown-item" href="#">Notification 4</a>
-                                    <a class="dropdown-item" href="#">Another notification</a>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                    <span class="d-lg-block">&nbsp;Search</span>
-                                </a>
+                                <nav class="navbar navbar-light bg-light">
+                                  <form class="form-inline">
+                                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                  </form>
+                                </nav>
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
@@ -183,7 +159,7 @@
                                                     $sql = "SELECT*FROM divisi";
                                                     $retval = mysqli_query($conn,$sql);
                                                     while ($row = mysqli_fetch_array($retval)) {
-                                                        echo "<option value='$nama_divisi'>($row[nama_divisi])</option>";
+                                                        echo "<option value='$row[nama_divisi]'>($row[nama_divisi])</option>";
                                                     }
                                                 ?>
                                             </select><br>

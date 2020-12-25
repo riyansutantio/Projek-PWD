@@ -37,13 +37,13 @@
                             <p>Data Pegawai</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="DataGaji.php">
                             <i class="nc-icon nc-bell-55"></i>
                             <p>Data Gaji Pegawai</p>
                         </a>
                     </li>
-                    <li class="nav-item active">
+                    <li>
                         <a class="nav-link" href="DataPresensi.php">
                             <i class="nc-icon nc-bell-55"></i>
                             <p>Data Presensi Pegawai</p>
@@ -105,7 +105,7 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="section">
-                        <p align="center" class="Content-data">Data Presensi Pegawai</p>
+            			<p align="center" class="Content-data">Data Gaji Pegawai</p>
                     </div>
                 </div>
             </div>

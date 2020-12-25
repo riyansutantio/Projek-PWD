@@ -21,16 +21,50 @@
 </head>
 <body>
 	<div class="bg-login">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  	<a class="navbar-brand" href="https://en.wikipedia.org/wiki/Human_resource_management_system">HRMS</a>
+		  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+		    	<span class="navbar-toggler-icon"></span>
+		  	</button>
+		  	<div class="collapse navbar-collapse" id="navbarText">
+		    	<ul class="navbar-nav mr-auto">
+		      		<!-- <li class="nav-item active">
+		        		<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+		      		</li>
+		      		<li class="nav-item">
+		        		<a class="nav-link" href="#">Features</a>
+		      		</li>
+		      		<li class="nav-item">
+		        		<a class="nav-link" href="#">Pricing</a>
+		      		</li> -->
+		    	</ul>
+		    <span class="navbar-text">
+		    	Project Pemrograman Web Dinamis
+		    </span>
+		  </div>
+		</nav>
 		<div class="bg-form">
 			<p class="login-page">Login Page</p>
-			<form method="post" action="login.php">
+			    <!-- cek pesan notifikasi -->
+				<?php 
+				if(isset($_GET['pesan'])){
+					if($_GET['pesan'] == "gagal"){
+						echo "Login gagal! username dan password salah!";
+					}else if($_GET['pesan'] == "logout"){
+						echo "<script>alert('Telah berhasil logout');</script>";
+					}else if($_GET['pesan'] == "belum_login"){
+						echo "Anda harus login untuk mengakses halaman admin";
+					}
+				}
+				?>
+			<form method="post" action="ceklogin.php">
 				<table class="table-login" align="Center">
 					<tr >
 						<td>Username</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="text" name="username" size="35">
+							<input type="text" name="username" size="35" placeholder="Masukkan username">
 						</td>
 					</tr>
 					<tr>
@@ -38,36 +72,16 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="Password" name="password" size="35">
+							<input type="Password" name="password" size="35" placeholder="Masukkan password">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<a href="real.php">
-								<input class="btn-login" type="submit" name="submit" value="Login" size="20">
-							</a>
+							<input class="btn-login" type="submit" name="submit" value="Login" size="20">
 						</td>
 					</tr>
 				</table>
 			</form>
-			
-			<?php 
-				 
-				$username = $_POST['username'];
-				$password = md5($_POST['password']);
-				 
-				$login = mysql_query("SELECT * FROM admin WHERE username='$username' AND password='$password'");
-				$cek = mysql_num_rows($login);
-				 
-				if($cek > 0){
-					alert("Berhasil login");
-					header("location:real.php");
-				}else{
-					alert("Gagal Login, Coba ulang");
-					header("location:login.php");	
-				}
-				 
-			?>
 		</div>
 	</div>
 </body>
