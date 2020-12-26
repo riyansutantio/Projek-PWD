@@ -1,3 +1,18 @@
+<?php  
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        echo "<script>
+            alert('Anda belum login');
+            document.location.href='login.php';
+            </script>";
+    }else if ($_SESSION['level']=='staff') {
+        echo "<script>
+            alert('Anda bukan admin');
+            document.location.href='homestaff.php';
+            </script>";   
+    }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,22 +90,18 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Account</span>
-                                </a>
-                            </li>
+                            <li class="nav-item"></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="no-icon">Edit Data</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="tambahpegawai.php">Tambah Data</a>
+                                    <a class="dropdown-item" href="tambahpegawai.php">Tambah Data</a><!-- 
                                     <a class="dropdown-item" href="#">Another action</a>
                                     <a class="dropdown-item" href="#">Something</a>
                                     <a class="dropdown-item" href="#">Something else here</a>
                                     <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
+                                    <a class="dropdown-item" href="#">Separated link</a> -->
                                 </div>
                             </li>
                             <li class="nav-item">

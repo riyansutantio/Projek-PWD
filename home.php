@@ -1,3 +1,17 @@
+<?php  
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        echo "<script>
+            alert('Anda belum login');
+            document.location.href='login.php';
+            </script>";
+    }else if ($_SESSION['level']=='staff') {
+        echo "<script>
+            alert('Anda bukan admin');
+            document.location.href='homestaff.php';
+            </script>";   
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,11 +83,7 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Account</span>
-                                </a>
-                            </li>
+                            <li class="nav-item"></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="no-icon">Dropdown</span>

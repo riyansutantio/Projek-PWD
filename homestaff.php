@@ -5,14 +5,8 @@
             alert('Anda belum login');
             document.location.href='login.php';
             </script>";
-    }else if ($_SESSION['level']=='staff') {
-        echo "<script>
-            alert('Anda bukan admin');
-            document.location.href='homestaff.php';
-            </script>";   
     }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,11 +28,6 @@
 <body>
 	<div class="wrapper">
         <div class="sidebar" data-image="img/sidebar-5.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="home.php" class="simple-text">
@@ -58,7 +47,7 @@
                             <p>Data Gaji Pegawai</p>
                         </a>
                     </li>
-                    <li class="nav-item active">
+                    <li>
                         <a class="nav-link" href="DataPresensi.php">
                             <i class="nc-icon nc-bell-55"></i>
                             <p>Data Presensi Pegawai</p>
@@ -89,20 +78,24 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item"></li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#pablo">
+                                    <span class="no-icon">Account</span>
+                                </a>
+                            </li>
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="no-icon">Dropdown</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a><!-- 
+                                    <a class="dropdown-item" href="#">Action</a>
                                     <a class="dropdown-item" href="#">Another action</a>
                                     <a class="dropdown-item" href="#">Something</a>
                                     <a class="dropdown-item" href="#">Something else here</a>
                                     <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a> -->
+                                    <a class="dropdown-item" href="#">Separated link</a>
                                 </div>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">
                                     <span class="no-icon">Log out</span>
@@ -113,10 +106,16 @@
                 </div>
             </nav>
             <!-- End Navbar -->
+            <!-- isi content -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="section">
-                        <p align="center" class="Content-data">Data Presensi Pegawai</p>
+                        <p class="content-home">Home</p>
+                        <p class="content-home-for">This Project are made with all our heart and our soul</p>
+                        <p class="content-home-desc">
+                            This Project for completing our task in course Dynamic Web Programing<br>
+                            Human Resource Management is the strategic approach to the effective management of people in a company or organization such that <br>they help their business gain a competitive advantage. It is designed to maximize employee performance in service of an employer's strategic objectives
+                        </p>
                     </div>
                 </div>
             </div>
@@ -125,7 +124,7 @@
                     <nav>
                         <ul class="footer-menu">
                             <li>
-                                <a href="#">
+                                <a href="home.php">
                                     Home
                                 </a>
                             </li>

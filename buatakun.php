@@ -3,8 +3,22 @@
 <head>
 	<?php  
 		include 'config.php';
+
+		if (isset($_POST['submit'])) {
+			error_reporting(E_ALL^E_NOTICE);
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+            $insert ="INSERT INTO admin(id, username, password,level) VALUES ('','$username','$password','staff')"; 
+
+                mysqli_query($conn,$insert);
+                echo "<script>
+					alert('Berhasil Menambahkan Akun');
+					document.location.href='login.php';
+				</script>";
+		}
 	?>
-	<title>Login Page</title>
+	<title>Form Buat Akun</title>
 	<meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
@@ -27,35 +41,17 @@
 		    	<span class="navbar-toggler-icon"></span>
 		  	</button>
 		  	<div class="collapse navbar-collapse" id="navbarText">
-		    	<ul class="navbar-nav mr-auto">
-		      		<li class="nav-item active">
-		        		<a class="nav-link" href="buatakun.php">Buat Akun <span class="sr-only"></span></a>
-		      		</li>
-		      		<li class="nav-item">
-		        		<a class="nav-link" href="lupapassword.php">Lupa Password</a>
-		      		</li>
-		    	</ul>
+		    	<ul class="navbar-nav mr-auto"></ul>
 		    <span class="navbar-text">
 		    	Project Pemrograman Web Dinamis
 		    </span>
 		  </div>
 		</nav>
 		<div class="bg-form">
-			<p class="login-page">Login Page</p>
-			    <!-- cek pesan notifikasi -->
-				<?php 
-				if(isset($_GET['pesan'])){
-					if($_GET['pesan'] == "gagal"){
-						echo "Login gagal! username dan password salah!";
-					}else if($_GET['pesan'] == "logout"){
-						echo "<script>alert('Telah berhasil logout');</script>";
-					}else if($_GET['pesan'] == "belum_login"){
-						echo "Anda harus login untuk mengakses halaman admin";
-					}
-				}
-				?>
-			<form method="post" action="ceklogin.php">
+			<p class="login-page">Form Buat Akun</p>
+			<form method="post" action="buatakun.php">
 				<table class="table-login" align="Center">
+					<input type="hidden" name="level" >
 					<tr >
 						<td>Username</td>
 					</tr>
@@ -74,7 +70,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input class="btn-login" type="submit" name="submit" value="Login" size="20">
+							<input class="btn-login" type="submit" name="submit" value="Buat Akun" size="20">
 						</td>
 					</tr>
 				</table>
