@@ -168,23 +168,28 @@
                     <nav>
                         <ul class="footer-menu">
                             <li>
-                                <a href="#">
+                                <a href="home.php">
                                     Home
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Company
+                                <a href="aboutadmin.php">
+                                    About Us
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Portfolio
+                                <a href="https://www.ums.ac.id/en/home/">
+                                    Universitas
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Blog
+                                <a href="https://fki.ums.ac.id/">
+                                    Fakultas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://informatika.ums.ac.id/">
+                                    Informatika
                                 </a>
                             </li>
                         </ul>

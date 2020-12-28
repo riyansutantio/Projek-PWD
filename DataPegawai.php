@@ -1,4 +1,4 @@
-<?php  
+ <?php  
     session_start();
     if (!isset($_SESSION['username'])) {
         echo "<script>
@@ -12,7 +12,6 @@
             </script>";   
     }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,12 +95,7 @@
                                     <span class="no-icon">Edit Data</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="tambahpegawai.php">Tambah Data</a><!-- 
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a> -->
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Tambah Data Pegawai</button>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -164,23 +158,28 @@
                     <nav>
                         <ul class="footer-menu">
                             <li>
-                                <a href="#">
+                                <a href="home.php">
                                     Home
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Company
+                                <a href="aboutadmin.php">
+                                    About Us
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Portfolio
+                                <a href="https://www.ums.ac.id/en/home/">
+                                    Universitas
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Blog
+                                <a href="https://fki.ums.ac.id/">
+                                    Fakultas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://informatika.ums.ac.id/">
+                                    Informatika
                                 </a>
                             </li>
                         </ul>
@@ -197,6 +196,80 @@
         </div>
     </div>
 </body>
+<!-- Pop up modal tambah data -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Pegawai</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="">
+                      <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Nama</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama">
+                      </div>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">NIP</label>
+                  <input type="text" class="form-control" name="nip" placeholder="Masukkan NIP">
+                </div>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Jenis Kelamin</label>
+                  <input type="text" class="form-control" name="jenis_kelamin" placeholder="Masukkan Jenis Kelamin">
+                </div>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Alamat</label>
+                  <input type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat">
+                </div>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Nomor Hp</label>
+                  <input type="text" class="form-control" name="no_hp" placeholder="Masukkan Nomor Hp">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Divisi</label>
+                    <select name='divisi'>
+                        <option value="">---Pilih Divisi---</option>
+                        <?php  
+                            $sql = "SELECT*FROM divisi";
+                            $retval = mysqli_query($conn,$sql);
+                            while ($row = mysqli_fetch_array($retval)) {
+                                echo "<option value='$row[nama_divisi]'>($row[nama_divisi])</option>";
+                            }
+                        ?>
+                    </select><br>
+                </div>
+                      <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" name="submit" value="Simpan Data" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php  
+        error_reporting(E_ALL^E_NOTICE);
+        $nama = $_POST['nama'];
+        $nip = $_POST['nip'];
+        $jenis_kelamin = $_POST['jenis_kelamin'];
+        $alamat = $_POST['alamat'];
+        $no_hp = $_POST['no_hp'];
+        $divisi = $_POST['divisi'];
+        $submit = $_POST['submit'];
+
+        $insert ="INSERT INTO pegawai(id, nama, nip, jenis_kelamin, alamat, no_hp, divisi) VALUES ('','$nama','$nip','$jenis_kelamin','$alamat','$no_hp','$divisi')"; 
+
+        if (isset($submit)) {
+            mysqli_query($conn,$insert);
+            echo "<script>
+                alert('Data berhasil ditambahkan');
+                document.location.href='DataPegawai.php';
+            </script>";
+        }
+    ?>
+    </div>
 <!--   Core JS Files   -->
 <script src="js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="js/core/popper.min.js" type="text/javascript"></script>

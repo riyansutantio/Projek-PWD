@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 	<?php  
@@ -41,7 +41,9 @@
 		    	<span class="navbar-toggler-icon"></span>
 		  	</button>
 		  	<div class="collapse navbar-collapse" id="navbarText">
-		    	<ul class="navbar-nav mr-auto"></ul>
+		    	<ul class="navbar-nav mr-auto">
+		    		<a class="nav-link" href="login.php">Login<span class="sr-only"></span></a>
+		    	</ul>
 		    <span class="navbar-text">
 		    	Project Pemrograman Web Dinamis
 		    </span>

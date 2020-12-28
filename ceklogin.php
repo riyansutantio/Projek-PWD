@@ -10,7 +10,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
  
 // menyeleksi data admin dengan username dan password yang sesuai
-$data = mysqli_query($conn,"SELECT * FROM admin WHERE username='$username' AND password='$password'");
+$data = mysqli_query($conn,"SELECT * FROM admin WHERE nama='$username' AND password='$password'");
 
 //mendeteksi admin atau staff
 $deteksi = mysqli_fetch_array($data);

@@ -9,13 +9,21 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $insert ="INSERT INTO admin(id, username, password,level) VALUES ('','$username','$password','staff')"; 
-
-                mysqli_query($conn,$insert);
-                echo "<script>
-					alert('Berhasil Menambahkan Akun');
-					document.location.href='login.php';
-				</script>";
+            $cek = mysqli_query($conn,'SELECT * FROM pegawai');
+            
+            while ($result = mysqli_fetch_array($cek)) {
+            	var_dump($result['nama']);
+	            if ($result['nama'] == $username) {	
+            		$insert ="INSERT INTO admin(id, nama, password,level) VALUES ('','$username','$password','staff')"; 
+	                mysqli_query($conn,$insert);
+	                echo "<script>
+						alert('Berhasil Menambahkan Akun');
+						document.location.href='login.php';
+					</script>";
+				}else{
+					echo "<script>alert('Gagal Menambahkan Akun');document.location.href='buatakun.php';</script>";
+				}
+			}
 		}
 	?>
 	<title>Form Buat Akun</title>
@@ -41,7 +49,9 @@
 		    	<span class="navbar-toggler-icon"></span>
 		  	</button>
 		  	<div class="collapse navbar-collapse" id="navbarText">
-		    	<ul class="navbar-nav mr-auto"></ul>
+		    	<ul class="navbar-nav mr-auto">
+		    		<a class="nav-link" href="login.php">Login<span class="sr-only"></span></a>
+		    	</ul>
 		    <span class="navbar-text">
 		    	Project Pemrograman Web Dinamis
 		    </span>

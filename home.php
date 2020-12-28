@@ -85,7 +85,7 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item"></li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!-- <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="no-icon">Dropdown</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -95,7 +95,7 @@
                                     <a class="dropdown-item" href="#">Something else here</a>
                                     <div class="divider"></div>
                                     <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
+                                </div> -->
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">
@@ -111,15 +111,17 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="section">
-                        <p class="content-home">Home</p>
+                        <p class="content-home">Home Page</p><hr>
                         <p class="content-home-for">This Project are made with all our heart and our soul</p>
                         <p class="content-home-desc">
                             This Project for completing our task in course Dynamic Web Programing<br>
                             Human Resource Management is the strategic approach to the effective management of people in a company or organization such that <br>they help their business gain a competitive advantage. It is designed to maximize employee performance in service of an employer's strategic objectives
-                        </p>
+                        </p><hr>
+                        <p class="content-home-desc">"For Professional Purpose"</p>
                     </div>
                 </div>
             </div>
+            <!-- footer start -->
             <footer class="footer">
                 <div class="container-fluid">
                     <nav>
@@ -130,18 +132,23 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Company
+                                <a href="aboutadmin.php">
+                                    About Us
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Portfolio
+                                <a href="https://www.ums.ac.id/en/home/">
+                                    Universitas
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Blog
+                                <a href="https://fki.ums.ac.id/">
+                                    Fakultas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://informatika.ums.ac.id/">
+                                    Informatika
                                 </a>
                             </li>
                         </ul>

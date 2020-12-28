@@ -30,25 +30,25 @@
         <div class="sidebar" data-image="img/sidebar-5.jpg">
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="home.php" class="simple-text">
+                    <a href="homestaff.php" class="simple-text">
                       Human Resource Management
                     </a>
                 </div>
                 <ul class="nav">
                     <li>
-                        <a class="nav-link" href="DataPegawai.php">
+                        <a class="nav-link" href="staff_DataPegawai.php">
                             <i class="nc-icon nc-icon nc-paper-2"></i>
                             <p>Data Pegawai</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="DataGaji.php">
+                        <a class="nav-link" href="staff_DataGaji.php">
                             <i class="nc-icon nc-bell-55"></i>
                             <p>Data Gaji Pegawai</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="DataPresensi.php">
+                        <a class="nav-link" href="staff_DataPresensi.php">
                             <i class="nc-icon nc-bell-55"></i>
                             <p>Data Presensi Pegawai</p>
                         </a>
@@ -119,28 +119,34 @@
                     </div>
                 </div>
             </div>
+            <!-- footer start -->
             <footer class="footer">
                 <div class="container-fluid">
                     <nav>
                         <ul class="footer-menu">
                             <li>
-                                <a href="home.php">
+                                <a href="homestaff.php">
                                     Home
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Company
+                                <a href="aboutadmin.php">
+                                    About Us
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Portfolio
+                                <a href="https://www.ums.ac.id/en/home/">
+                                    Universitas
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Blog
+                                <a href="https://fki.ums.ac.id/">
+                                    Fakultas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://informatika.ums.ac.id/">
+                                    Informatika
                                 </a>
                             </li>
                         </ul>
