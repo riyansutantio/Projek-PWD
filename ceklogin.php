@@ -22,12 +22,12 @@ $cek = mysqli_num_rows($data);
 			$_SESSION['username'] = $username;
 			$_SESSION['status'] = "login";
 			$_SESSION['level'] = "admin";
-			echo "<script>alert('Berhasil melakukan proses login');document.location.href='home.php';</script>";
+			echo "<script>alert('Berhasil melakukan proses login');document.location.href='home.php?$username';</script>";
 		}else{
 			$_SESSION['username'] = $username;
 			$_SESSION['status'] = "login";
 			$_SESSION['level'] = "staff";
-			echo "<script>alert('Berhasil melakukan proses login');document.location.href='homestaff.php';</script>";
+			echo "<script>alert('Berhasil melakukan proses login');document.location.href='homestaff.php?$username';</script>";
 		}
 	}else{
 		echo "<script>alert('Gagal melakukan login, coba lagi');</script>";

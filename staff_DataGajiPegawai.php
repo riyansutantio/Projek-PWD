@@ -39,13 +39,13 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active">
+                    <li>
                         <a class="nav-link" href="staff_DataPegawai.php">
                             <i class="nc-icon nc-icon nc-paper-2"></i>
                             <p>Data Pegawai</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="staff_DataGajiPegawai.php">
                             <i class="nc-icon nc-bell-55"></i>
                             <p>Data Gaji Pegawai</p>
