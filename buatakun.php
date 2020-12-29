@@ -12,7 +12,6 @@
             $cek = mysqli_query($conn,'SELECT * FROM pegawai');
             
             while ($result = mysqli_fetch_array($cek)) {
-            	var_dump($result['nama']);
 	            if ($result['nama'] == $username) {	
             		$insert ="INSERT INTO admin(id, nama, password,level) VALUES ('','$username','$password','staff')"; 
 	                mysqli_query($conn,$insert);

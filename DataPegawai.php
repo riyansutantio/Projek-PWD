@@ -130,24 +130,24 @@
                         <?php  
                             $i =1;
                             while ($row = mysqli_fetch_array($result)) { ?>
-                        <tbody>
-                            <td><?= $i ?></td>
-                            <td><?= $row["nama"]; ?></td>
-                            <td><?= $row["nip"]; ?></td>
-                            <td><?= $row["jenis_kelamin"]; ?></td>
-                            <td><?= $row["alamat"]; ?></td>
-                            <td><?= $row["no_hp"]; ?></td>
-                            <td><?= $row["divisi"]; ?></td>
-                            <td>
-                                <a href="edit.php?id=<?= $row['id'];?>">
-                                    <button type="button" class="btn btn-warning">Edit</button>
-                                </a>
-                                <a href="hapuspegawai.php?id=<?= $row['id'];?>" onclick='return confirm("apakah anda ingin menghapus data?")'>
-                                    <button type="button" class="btn btn-danger" style="margin-left: 10px;">Hapus</button>
-                                </a>
-                            </td>
-                            <?php $i++; } ?>
-                        </tbody>
+                                <tbody>
+                                    <td><?= $i ?></td>
+                                    <td><?= $row["nama"]; ?></td>
+                                    <td><?= $row["nip"]; ?></td>
+                                    <td><?= $row["jenis_kelamin"]; ?></td>
+                                    <td><?= $row["alamat"]; ?></td>
+                                    <td><?= $row["no_hp"]; ?></td>
+                                    <td><?= $row["divisi"]; ?></td>
+                                    <td>
+                                        <a href="edit.php?id=<?= $row['id'];?>">
+                                            <button type="button" class="btn btn-warning">Edit</button>
+                                        </a>
+                                        <a href="hapuspegawai.php?id=<?= $row['id'];?>" onclick='return confirm("apakah anda ingin menghapus data?")'>
+                                            <button type="button" class="btn btn-danger" style="margin-left: 10px;">Hapus</button>
+                                        </a>
+                                    </td>
+                                    <?php $i++; } ?>
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -259,7 +259,7 @@
         $divisi = $_POST['divisi'];
         $submit = $_POST['submit'];
 
-        $insert ="INSERT INTO pegawai(id, nama, nip, jenis_kelamin, alamat, no_hp, divisi) VALUES ('','$nama','$nip','$jenis_kelamin','$alamat','$no_hp','$divisi')"; 
+        $insert ="INSERT INTO pegawai(id, nama, nip, jenis_kelamin, alamat, no_hp, divisi,email,foto) VALUES ('','$nama','$nip','$jenis_kelamin','$alamat','$no_hp','$divisi','','')"; 
 
         if (isset($submit)) {
             mysqli_query($conn,$insert);

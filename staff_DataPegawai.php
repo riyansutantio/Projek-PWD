@@ -9,6 +9,8 @@
     $staff = $_SESSION['username'];
         require 'config.php';
         $result = mysqli_query($conn,"SELECT*FROM pegawai WHERE nama='$staff'");
+        $gaji = mysqli_query($conn,"SELECT*FROM gaji WHERE nama='$staff'");
+        $hasilgaji = mysqli_fetch_array($gaji);
         $hasil = mysqli_fetch_array($result);
 ?>
 <!DOCTYPE html>
@@ -99,32 +101,134 @@
             <!-- End Navbar -->
             <!-- isi content -->
             <div class="content">
-                <div class="container-fluid">
-                    <div class="section">
-                        <p align="center" class="content-data">Data Pegawai</p>  
-                        <table class="table">
-                        <thead>
-                            <tr>
-                              <th scope="col">ID</th>
-                              <th scope="col">Nama Pegawai</th>
-                              <th scope="col">NIP</th>
-                              <th scope="col">Jenis Kelamin</th>
-                              <th scope="col">Alamat</th>
-                              <th scope="col">No Hp</th>
-                              <th scope="col">Divisi</th>
-                            </tr>
-                        </thead>
-                            <tbody>
-                                <td>1.</td>
-                                <td><?= $hasil['nama']; ?></td>
-                                <td><?= $hasil['nip']; ?></td>
-                                <td><?= $hasil['jenis_kelamin']; ?></td>
-                                <td><?= $hasil['alamat']; ?></td>
-                                <td><?= $hasil['no_hp']; ?></td>
-                                <td><?= $hasil['divisi']; ?></td>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="container emp-profile">
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="profile-gambar">
+                                    <form method="POST" enctype="multipart/form-data">
+                                        <?php  
+                                            if ($hasil['foto']=='') {
+                                                ?>
+                                                <img src="img/faces/face-0.jpg" width="150" height="150">
+                                            <?php } else{?>
+                                                <img src="img/faces/<?= $hasil['foto'];?>" width='150' height='150' >
+                                            <?php }
+                                        ?>
+                                    </form>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="profile-head"><br><br>
+                                            <h5>
+                                                <p><?= $hasil['nama'];?></p>
+                                            </h5>
+                                            <h6>
+                                                <p><?=$hasil['divisi'];?></p>
+                                            </h6>
+                                            <hr><br>
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Gaji</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-2"><br><br><br>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Edit Profile</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <!-- <div class="profile-work">
+                                    <p>WORK LINK</p>
+                                    <a href="">Website Link</a><br/>
+                                    <a href="">Bootsnipp Profile</a><br/>
+                                    <a href="">Bootply Profile</a><p> </p>
+                                    <p>SKILLS</p>
+                                    <a href="">Web Designer</a><br/>
+                                    <a href="">Web Developer</a><br/>
+                                    <a href="">WordPress</a><br/>
+                                    <a href="">WooCommerce</a><br/>
+                                    <a href="">PHP, .Net</a><br/>
+                                </div> -->
+                            </div>
+                            <div class="col-md-8">
+                                <div class="tab-content profile-tab" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                <div class="row">
+                                                    <div class="col-md-6"><br>
+                                                        <label>User Id</label>
+                                                    </div>
+                                                    <div class="col-md-6"><br>
+                                                        <p><?= $hasil['nama'];?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Name</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p><?= $hasil['nama'];?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Email</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p><?= $hasil['email'];?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Phone</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p><?= $hasil['no_hp'];?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Division</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p><?= $hasil['divisi'];?></p>
+                                                    </div>
+                                                </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="row">
+                                                    <div class="col-md-6"><br>
+                                                        <label>NIP</label>
+                                                    </div>
+                                                    <div class="col-md-6"><br>
+                                                        <p><?= $hasil['nip'];?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Gaji</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p><?=$hasilgaji['nominal'];?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6"></div>
+                                                    <div class="col-md-6">
+                                                        <input type="submit" class="btn btn-primary" name="cetakgaji" value="Cetak Gaji">
+                                                    </div>
+                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>           
                 </div>
             </div>
             <!-- footer start -->
@@ -171,6 +275,39 @@
         </div>
     </div>
 </body>
+<!-- Pop up modal tambah data -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Pegawai</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="uploadprofilstaff.php?id=<?=$hasil['id'];?>" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nama</label>
+                            <input type="text" class="form-control" name="nama" placeholder="<?=$hasil['nama'];?>" disabled>
+                        </div>
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">E-Mail</label>
+                          <input type="text" class="form-control" name="email" placeholder="Masukkan E-mail">
+                        </div>
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">Foto</label>
+                          <input type="file" name="foto" id="foto">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" name="submit" value="Simpan Data" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 <!--   Core JS Files   -->
 <script src="js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="js/core/popper.min.js" type="text/javascript"></script>

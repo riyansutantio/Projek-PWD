@@ -9,7 +9,7 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $update ="UPDATE admin SET password='$password' WHERE username='$username'" ; 
+            $update ="UPDATE admin SET password='$password' WHERE nama='$username'" ; 
 
                 mysqli_query($conn,$update);
                 echo "<script>
