@@ -49,6 +49,7 @@
         -ms-transform: rotate(360deg);
     }
 }
+
 /*login page*/
 .login-page{
     text-align: center;
@@ -80,11 +81,20 @@
 .btn-login{
     font-size: 20px;
 }
+
 /* isi content data*/
 .content-data{
     text-align: center;
 }
+.isi-tabels{
+    border: 1px;
+
+}
+
 /*home page*/
+.search{
+    border-radius: 4px;
+}
 .content-home{
     padding-top: 10%;
     padding-bottom: 0px;
@@ -103,6 +113,12 @@
     text-align: center;
     font-size: 15px;
     font-family: Roboto;
+}
+
+/*profil staff*/
+.profile-gambar{
+    max-width: 200px;
+    height: 200px;
 }
 
 /*           Font Smoothing      */
