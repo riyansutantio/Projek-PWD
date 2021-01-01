@@ -11,6 +11,9 @@
             document.location.href='homestaff.php';
             </script>";   
     }
+    require 'config.php';
+    $result = mysqli_query($conn,"SELECT*FROM attandance");
+
 ?>
 
 <!DOCTYPE html>
@@ -34,11 +37,6 @@
 <body>
 	<div class="wrapper">
         <div class="sidebar" data-image="img/sidebar-5.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="home.php" class="simple-text">
@@ -92,15 +90,10 @@
                             <li class="nav-item"></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="no-icon">Dropdown</span>
+                                    <span class="no-icon">Edit Data</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a><!-- 
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a> -->
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Tambah Data Presensi</button>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -116,10 +109,121 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="section">
-                        <p align="center" class="Content-data">Data Presensi Pegawai</p>
+                        <p align="center" class="content-data">Data Pegawai</p>  
+                        <table class="table">
+                        <thead>
+                            <tr>
+                              <th scope="col">ID</th>
+                              <th scope="col">Nama Pegawai</th>
+                              <th scope="col">NIP</th>
+                              <th scope="col">Tanggal Absensi</th>
+                              <th scope="col">Chech In</th>
+                              <th scope="col">Check Out</th>
+                              <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <?php  
+                            $i =1;
+                            while ($row = mysqli_fetch_array($result)) { ?>
+                                <tbody>
+                                    <td><?= $i ?></td>
+                                    <td><?= $row["nama"]; ?></td>
+                                    <td><?= $row["nip"]; ?></td>
+                                    <td><?= $row["tanggal"]; ?></td>
+                                    <td><?= $row["check_in"]; ?></td>
+                                    <td><?= $row["check_out"]; ?></td>
+                                    <td>
+                                        <a href="editpresensi.php?id=<?= $row['id'];?>">
+                                            <button type="button" class="btn btn-warning">Edit</button>
+                                        </a>
+                                        <a href="hapuspresnsi.php?id=<?= $row['id'];?>" onclick='return confirm("apakah anda ingin menghapus data?")'>
+                                            <button type="button" class="btn btn-danger" style="margin-left: 10px;">Hapus</button>
+                                        </a>
+                                    </td>
+                                    <?php $i++; } ?>
+                                </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+            <!-- Pop up modal tambah data -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Presensi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="">
+                      <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Nama</label>
+                        <select name='nama'>
+                            <option value="">---Pilih Nama---</option>
+                            <?php  
+                                $sql = "SELECT*FROM pegawai";
+                                $retval = mysqli_query($conn,$sql);
+                                while ($row = mysqli_fetch_array($retval)) {
+                                    echo "<option value='$row[nama]'>($row[nama])</option>";
+                                }
+                            ?>
+                        </select><br>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">NIP</label>
+                            <select name='nip'>
+                                <option value="">---Pilih NIP---</option>
+                                <?php  
+                                    $sql = "SELECT*FROM pegawai";
+                                    $retval = mysqli_query($conn,$sql);
+                                    while ($row = mysqli_fetch_array($retval)) {
+                                        echo "<option value='$row[nip]'>($row[nip])-->$row[nama]</option>";
+                                    }
+                                ?>
+                            </select><br>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Tanggal</label>
+                            <input type="date" class="form-control" name="tanggal" placeholder="Masukkan Nominal Gaji">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Check In</label>
+                            <input type="time" class="form-control" name="check_in" >
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Check Out</label>
+                            <input type="time" class="form-control" name="check_out" >
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" name="submit" value="Simpan Data" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <?php  
+        error_reporting(E_ALL^E_NOTICE);
+        $nama = $_POST['nama'];
+        $nip = $_POST['nip'];
+        $tanggal = $_POST['tanggal'];
+        $check_in = $_POST['check_in'];
+        $check_out = $_POST['check_out'];
+        $submit = $_POST['submit'];
+
+        $insert ="INSERT INTO attandance(id, nama, tanggal, check_in, check_out) VALUES ('','$nama','$nip','$tanggal','$check_in','$check_out')"; 
+
+        if (isset($submit)) {
+            mysqli_query($conn,$insert);
+            echo "<script>
+                alert('Data berhasil ditambahkan');
+                document.location.href='DataPresensi.php';
+            </script>";
+            }
+        ?>
+    </div>
             <!-- Footer start -->
             <footer class="footer">
                 <div class="container-fluid">

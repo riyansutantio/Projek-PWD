@@ -203,6 +203,32 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>Email</td>
+                                        <td>:</td>
+                                        <td>
+                                            <input type="text" name="email" value="<?= $p['email']; ?>">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <?php 
+                                            if ($p['foto']=='') {?>
+                                                "Belum Mengisi Gambar"
+                                            <?php }else{?>
+                                                <img src="img/faces/<?=$p['foto'];?>" height='100' width='100'>
+                                            <?php } ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Foto</td>
+                                        <td>:</td>
+                                        <td>
+                                            <input type="text" name="foto" value="<?= $p['foto']; ?>">
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
                                         <td>
@@ -269,8 +295,9 @@
         $divisi = $_POST['divisi'];
         $submit = $_POST['submit'];
 
+        $query= "UPDATE pegawai SET nama='$nama', nip=$nip, jenis_kelamin='$jenis_kelamin', alamat='$alamat', no_hp='$no_hp', divisi='$divisi' WHERE pegawai.id=$id ";
 
-        $query= "UPDATE pegawai SET nama='$nama',nip='$nip',jenis_kelamin='$jenis_kelamin',alamat='$alamat',no_hp='$no_hp',divisi='$divisi' WHERE id='$id'";
+        print_r($query);
         // apabila tombol submit di tekan
         if ($submit) {
             mysqli_query($conn, $query);

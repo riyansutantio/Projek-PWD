@@ -213,7 +213,7 @@
         $nominal = $_POST['nominal'];
         $submit = $_POST['submit'];
 
-        $query= "UPDATE gaji SET nominal='$nominal' WHERE id='$id'";
+        $query= "UPDATE gaji SET nominal='$nominal' WHERE gaji.id='$id'";
         // apabila tombol submit di tekan
         if ($submit) {
             mysqli_query($conn, $query);

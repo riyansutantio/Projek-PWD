@@ -241,7 +241,7 @@
                 </div>
             </div>
         </div>
-    <?php  
+        <?php  
         error_reporting(E_ALL^E_NOTICE);
         $nama = $_POST['nama'];
         $nip = $_POST['nip'];

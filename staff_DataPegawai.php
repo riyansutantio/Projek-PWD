@@ -219,9 +219,17 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Tanggal Hari ini</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p><?=date('d M Y');?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
                                                     <div class="col-md-6"></div>
                                                     <div class="col-md-6">
-                                                        <input type="submit" class="btn btn-primary" name="cetakgaji" value="Cetak Gaji">
+                                                        <a href="report.php?id=<?=$staff?>"><input type="submit" class="btn btn-primary" name="cetakgaji" value="Cetak Gaji"></a>
                                                     </div>
                                                 </div>
                                     </div>

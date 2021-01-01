@@ -139,7 +139,7 @@
                                     <td><?= $row["no_hp"]; ?></td>
                                     <td><?= $row["divisi"]; ?></td>
                                     <td>
-                                        <a href="edit.php?id=<?= $row['id'];?>">
+                                        <a href="editpegawai.php?id=<?= $row['id'];?>">
                                             <button type="button" class="btn btn-warning">Edit</button>
                                         </a>
                                         <a href="hapuspegawai.php?id=<?= $row['id'];?>" onclick='return confirm("apakah anda ingin menghapus data?")'>
@@ -208,40 +208,40 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" action="">
-                      <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Nama</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama">
-                      </div>
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">NIP</label>
-                  <input type="text" class="form-control" name="nip" placeholder="Masukkan NIP">
-                </div>
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Jenis Kelamin</label>
-                  <input type="text" class="form-control" name="jenis_kelamin" placeholder="Masukkan Jenis Kelamin">
-                </div>
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Alamat</label>
-                  <input type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat">
-                </div>
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Nomor Hp</label>
-                  <input type="text" class="form-control" name="no_hp" placeholder="Masukkan Nomor Hp">
-                </div>
-                <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Divisi</label>
-                    <select name='divisi'>
-                        <option value="">---Pilih Divisi---</option>
-                        <?php  
-                            $sql = "SELECT*FROM divisi";
-                            $retval = mysqli_query($conn,$sql);
-                            while ($row = mysqli_fetch_array($retval)) {
-                                echo "<option value='$row[nama_divisi]'>($row[nama_divisi])</option>";
-                            }
-                        ?>
-                    </select><br>
-                </div>
-                      <div class="modal-footer">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nama</label>
+                            <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">NIP</label>
+                            <input type="text" class="form-control" name="nip" placeholder="Masukkan NIP">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Jenis Kelamin</label>
+                            <input type="text" class="form-control" name="jenis_kelamin" placeholder="Masukkan Jenis Kelamin">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Alamat</label>
+                            <input type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nomor Hp</label>
+                            <input type="text" class="form-control" name="no_hp" placeholder="Masukkan Nomor Hp">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Divisi</label>
+                            <select name='divisi'>
+                                <option value="">---Pilih Divisi---</option>
+                                <?php  
+                                    $sql = "SELECT*FROM divisi";
+                                    $retval = mysqli_query($conn,$sql);
+                                    while ($row = mysqli_fetch_array($retval)) {
+                                        echo "<option value='$row[nama_divisi]'>($row[nama_divisi])</option>";
+                                    }
+                                ?>
+                            </select><br>
+                        </div>
+                        <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <input type="submit" name="submit" value="Simpan Data" class="btn btn-primary">
                         </div>
@@ -249,26 +249,26 @@
                 </div>
             </div>
         </div>
-    <?php  
-        error_reporting(E_ALL^E_NOTICE);
-        $nama = $_POST['nama'];
-        $nip = $_POST['nip'];
-        $jenis_kelamin = $_POST['jenis_kelamin'];
-        $alamat = $_POST['alamat'];
-        $no_hp = $_POST['no_hp'];
-        $divisi = $_POST['divisi'];
-        $submit = $_POST['submit'];
+        <?php  
+            error_reporting(E_ALL^E_NOTICE);
+            $nama = $_POST['nama'];
+            $nip = $_POST['nip'];
+            $jenis_kelamin = $_POST['jenis_kelamin'];
+            $alamat = $_POST['alamat'];
+            $no_hp = $_POST['no_hp'];
+            $divisi = $_POST['divisi'];
+            $submit = $_POST['submit'];
 
-        $insert ="INSERT INTO pegawai(id, nama, nip, jenis_kelamin, alamat, no_hp, divisi,email,foto) VALUES ('','$nama','$nip','$jenis_kelamin','$alamat','$no_hp','$divisi','','')"; 
+            $insert ="INSERT INTO pegawai(id, nama, nip, jenis_kelamin, alamat, no_hp, divisi,email,foto) VALUES ('','$nama','$nip','$jenis_kelamin','$alamat','$no_hp','$divisi','','')"; 
 
-        if (isset($submit)) {
-            mysqli_query($conn,$insert);
-            echo "<script>
-                alert('Data berhasil ditambahkan');
-                document.location.href='DataPegawai.php';
-            </script>";
-        }
-    ?>
+            if (isset($submit)) {
+                mysqli_query($conn,$insert);
+                echo "<script>
+                    alert('Data berhasil ditambahkan');
+                    document.location.href='DataPegawai.php';
+                </script>";
+            }
+        ?>
     </div>
 <!--   Core JS Files   -->
 <script src="js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
