@@ -41,18 +41,6 @@
                             <p>Data Pegawai</p>
                         </a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="staff_DataGaji.php">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Data Gaji Pegawai</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="staff_DataPresensi.php">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Data Presensi Pegawai</p>
-                        </a>
-                    </li>
                     <li class="nav-item active active-pro">
                         <a class="nav-link active" href="javascript:;">
                             <i class="nc-icon nc-alien-33"></i>
@@ -69,33 +57,10 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <ul class="nav navbar-nav mr-auto">
                             <li class="nav-item">
-                                <nav class="navbar navbar-light bg-light">
-                                  <form class="form-inline">
-                                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                                  </form>
-                                </nav>
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Account</span>
-                                </a>
-                            </li>
-                            <!-- <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="no-icon">Dropdown</span>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
-                            </li> -->
+                            <li class="nav-item"></li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">
                                     <span class="no-icon">Log out</span>

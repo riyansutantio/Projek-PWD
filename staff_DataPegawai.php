@@ -47,18 +47,6 @@
                             <p>Data Pegawai</p>
                         </a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="staff_DataGajiPegawai.php">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Data Gaji Pegawai</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="staff_DataPresensiPegawai.php">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Data Presensi Pegawai</p>
-                        </a>
-                    </li>
                     <li class="nav-item active active-pro">
                         <a class="nav-link active" href="javascript:;">
                             <i class="nc-icon nc-alien-33"></i>
@@ -74,20 +62,10 @@
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <ul class="nav navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <nav class="navbar navbar-light bg-light">
-                                  <form class="form-inline">
-                                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                                  </form>
-                                </nav>
-                            </li>
+                            <li class="nav-item"></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Account</span>
-                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php">
@@ -144,18 +122,12 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <!-- <div class="profile-work">
-                                    <p>WORK LINK</p>
-                                    <a href="">Website Link</a><br/>
-                                    <a href="">Bootsnipp Profile</a><br/>
-                                    <a href="">Bootply Profile</a><p> </p>
-                                    <p>SKILLS</p>
-                                    <a href="">Web Designer</a><br/>
-                                    <a href="">Web Developer</a><br/>
-                                    <a href="">WordPress</a><br/>
-                                    <a href="">WooCommerce</a><br/>
-                                    <a href="">PHP, .Net</a><br/>
-                                </div> -->
+                                <div class="profile-work">
+                                    <p>Presensi Masuk</p>
+                                    <button type="button" class="btn btn-primary" name="check_in">Check In</button><br><br>
+                                    <p>Presensi Keluar</p>
+                                    <button type="button" class="btn btn-danger" name="check_out">Check Out</button>
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 <div class="tab-content profile-tab" id="myTabContent">

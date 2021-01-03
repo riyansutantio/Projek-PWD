@@ -12,8 +12,12 @@
             </script>";   
     }
     require 'config.php';
-    $result = mysqli_query($conn,"SELECT*FROM attandance");
-
+    if (isset($_POST['search-btn'])) {
+            $cari = $_POST['search'];
+            $result = mysqli_query($conn,"SELECT*FROM attandance WHERE nama LIKE '%$cari%' OR nip LIKE '%$cari%'");
+        }else{
+            $result = mysqli_query($conn,"SELECT*FROM attandance");
+        }
 ?>
 
 <!DOCTYPE html>
@@ -79,9 +83,9 @@
                         <ul class="nav navbar-nav mr-auto">
                             <li class="nav-item">
                                 <nav class="navbar navbar-light bg-light">
-                                  <form class="form-inline">
-                                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                  <form class="form-inline" method="post">
+                                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search nama/NIP" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search-btn">Search</button>
                                   </form>
                                 </nav>
                             </li>
@@ -117,7 +121,7 @@
                               <th scope="col">Nama Pegawai</th>
                               <th scope="col">NIP</th>
                               <th scope="col">Tanggal Absensi</th>
-                              <th scope="col">Chech In</th>
+                              <th scope="col">Check In</th>
                               <th scope="col">Check Out</th>
                               <th scope="col">Actions</th>
                             </tr>
@@ -190,7 +194,7 @@
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Check In</label>
-                            <input type="time" class="form-control" name="check_in" >
+                            <input type="time" class="form-control" name="check_in">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Check Out</label>
@@ -209,11 +213,16 @@
         $nama = $_POST['nama'];
         $nip = $_POST['nip'];
         $tanggal = $_POST['tanggal'];
+        
         $check_in = $_POST['check_in'];
+        $check_in = date("H:i:s", strtotime($check_in));
+        
         $check_out = $_POST['check_out'];
+        $check_out = date("H:i:s", strtotime($check_out));
+
         $submit = $_POST['submit'];
 
-        $insert ="INSERT INTO attandance(id, nama, tanggal, check_in, check_out) VALUES ('','$nama','$nip','$tanggal','$check_in','$check_out')"; 
+        $insert ="INSERT INTO attandance(id, nama, nip, tanggal, check_in, check_out) VALUES (null,'$nama','$nip','$tanggal','$check_in','$check_out')"; 
 
         if (isset($submit)) {
             mysqli_query($conn,$insert);

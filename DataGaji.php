@@ -18,7 +18,12 @@
 <head>
     <?php  
         require 'config.php';
-        $result = mysqli_query($conn,"SELECT*FROM gaji");
+        if (isset($_POST['search-btn'])) {
+            $cari = $_POST['search'];
+            $result = mysqli_query($conn,"SELECT*FROM gaji WHERE nama LIKE '%$cari%' OR nip LIKE '%$cari%'");
+        }else{
+            $result = mysqli_query($conn,"SELECT*FROM gaji");
+        }
     ?>
     <title>Human Resource Management</title>
     <meta charset="utf-8" />
@@ -82,9 +87,9 @@
                         <ul class="nav navbar-nav mr-auto">
                             <li class="nav-item">
                                 <nav class="navbar navbar-light bg-light">
-                                  <form class="form-inline">
+                                  <form class="form-inline" method="post">
                                     <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search-btn">Search</button>
                                   </form>
                                 </nav>
                             </li>

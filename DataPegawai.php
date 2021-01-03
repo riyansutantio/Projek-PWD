@@ -17,7 +17,12 @@
 <head>
     <?php  
         require 'config.php';
-        $result = mysqli_query($conn,"SELECT*FROM pegawai");
+        if (isset($_POST['search-btn'])) {
+            $cari = $_POST['search'];
+            $result = mysqli_query($conn,"SELECT*FROM pegawai WHERE nama LIKE '%$cari%' OR nip LIKE '%$cari%'");
+        }else{
+            $result = mysqli_query($conn,"SELECT*FROM pegawai");
+        }
     ?>
 	<title>Human Resource Management</title>
 	<meta charset="utf-8" />
@@ -81,9 +86,9 @@
                         <ul class="nav navbar-nav mr-auto">
                             <li class="nav-item">
                                 <nav class="navbar navbar-light bg-light">
-                                  <form class="form-inline">
-                                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                  <form class="form-inline" method="POST">
+                                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search nama/NIP" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search-btn">Search</button>
                                   </form>
                                 </nav>
                             </li>
@@ -127,27 +132,29 @@
                               <th scope="col">Actions</th>
                             </tr>
                         </thead>
-                        <?php  
+                        <?php
                             $i =1;
                             while ($row = mysqli_fetch_array($result)) { ?>
                                 <tbody>
-                                    <td><?= $i ?></td>
-                                    <td><?= $row["nama"]; ?></td>
-                                    <td><?= $row["nip"]; ?></td>
-                                    <td><?= $row["jenis_kelamin"]; ?></td>
-                                    <td><?= $row["alamat"]; ?></td>
-                                    <td><?= $row["no_hp"]; ?></td>
-                                    <td><?= $row["divisi"]; ?></td>
-                                    <td>
-                                        <a href="editpegawai.php?id=<?= $row['id'];?>">
-                                            <button type="button" class="btn btn-warning">Edit</button>
-                                        </a>
-                                        <a href="hapuspegawai.php?id=<?= $row['id'];?>" onclick='return confirm("apakah anda ingin menghapus data?")'>
-                                            <button type="button" class="btn btn-danger" style="margin-left: 10px;">Hapus</button>
-                                        </a>
-                                    </td>
-                                    <?php $i++; } ?>
+                                    <tr>
+                                        <td><?= $i ?></td>
+                                        <td><?= $row["nama"]; ?></td>
+                                        <td><?= $row["nip"]; ?></td>
+                                        <td><?= $row["jenis_kelamin"]; ?></td>
+                                        <td><?= $row["alamat"]; ?></td>
+                                        <td><?= $row["no_hp"]; ?></td>
+                                        <td><?= $row["divisi"]; ?></td>
+                                        <td>
+                                            <a href="editpegawai.php?id=<?= $row['id'];?>">
+                                                <button type="button" class="btn btn-warning">Edit</button>
+                                            </a>
+                                            <a href="hapuspegawai.php?id=<?= $row['id'];?>" onclick='return confirm("apakah anda ingin menghapus data?")'>
+                                                <button type="button" class="btn btn-danger" style="margin-left: 10px;">Hapus</button>
+                                            </a>
+                                        </td>
+                                    </tr>
                                 </tbody>
+                        <?php $i++; } ?>
                         </table>
                     </div>
                 </div>
