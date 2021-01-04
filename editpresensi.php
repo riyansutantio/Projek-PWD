@@ -11,6 +11,7 @@
             document.location.href='homestaff.php';
             </script>";   
     }
+    date_default_timezone_set('Asia/Jakarta');
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +21,7 @@
         require 'config.php';
         //menampilkan data pegawai
         $id = $_GET['id'];
-        $result = mysqli_query($conn, "SELECT * FROM pegawai WHERE id=$id");
+        $result = mysqli_query($conn, "SELECT * FROM attandance WHERE id=$id");
         $p = mysqli_fetch_array($result);
     ?>
 	<title>Human Resource Management</title>
@@ -67,12 +68,6 @@
                             <p>Data Presensi Pegawai</p>
                         </a>
                     </li>
-                    <li class="nav-item active active-pro">
-                        <a class="nav-link active" href="javascript:;">
-                            <i class="nc-icon nc-alien-33"></i>
-                            <p>Setting</p>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -82,14 +77,6 @@
             <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul class="nav navbar-nav mr-auto">
-                            <li class="nav-item">
-                            </li>
-                            <li class="dropdown nav-item">
-                            </li>
-                            <li class="nav-item">
-                            </li>
-                        </ul>
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item"></li>
                             <li class="nav-item">
@@ -116,77 +103,28 @@
                                         <td>Nama</td>
                                         <td>:</td>
                                         <td>
-                                            <input type="text" name="nama" value="<?= $p['nama']; ?>">
+                                            <input type="text" name="nama" value="<?= $p['nama']; ?>" disabled>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>NIP</td>
+                                        <td>Tanggal</td>
                                         <td>:</td>
                                         <td>
-                                            <input type="text" name="nip" value="<?= $p['nip']; ?>">
+                                            <input type="date" name="tanggal" value="<?= date("Y-m-d"); ?>">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Jenis Kelamin</td>
+                                        <td>Check In</td>
                                         <td>:</td>
                                         <td>
-                                            <input type="text" name="jenis_kelamin" value="<?= $p['jenis_kelamin']; ?>">
+                                            <input type="time" name="check_in" value="<?= date("H:i:s"); ?>">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Alamat</td>
+                                        <td>Check Out</td>
                                         <td>:</td>
                                         <td>
-                                            <input type="text" name="alamat" value="<?= $p['alamat']; ?>">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>No Hp</td>
-                                        <td>:</td>
-                                        <td>
-                                            <input type="text" name="no_hp" value="<?= $p['no_hp']; ?>">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Divisi</td>
-                                        <td>:</td>
-                                        <td>
-                                            <select name='divisi'>
-                                                <option value="">---Pilih Divisi---</option>
-                                                <?php  
-                                                    $sql = "SELECT*FROM divisi";
-                                                    $retval = mysqli_query($conn,$sql);
-                                                    while ($row = mysqli_fetch_array($retval)) {
-                                                        echo "<option value='$row[nama_divisi]'>($row[nama_divisi])</option>";
-                                                    }
-                                                ?>
-                                            </select><br>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email</td>
-                                        <td>:</td>
-                                        <td>
-                                            <input type="text" name="email" value="<?= $p['email']; ?>">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <?php 
-                                            if ($p['foto']=='') {?>
-                                                "Belum Mengisi Gambar"
-                                            <?php }else{?>
-                                                <img src="img/faces/<?=$p['foto'];?>" height='100' width='100'>
-                                            <?php } ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Foto</td>
-                                        <td>:</td>
-                                        <td>
-                                            <input type="text" name="foto" value="<?= $p['foto']; ?>">
+                                            <input type="time" name="check_out" value="<?= date("H:i:s"); ?>">
                                         </td>
                                     </tr>
                                     <tr>
@@ -248,24 +186,23 @@
 </body>
 <?php
         error_reporting(E_ALL^E_NOTICE);
+
         $nama = $_POST['nama'];
-        $nip = $_POST['nip'];
-        $jenis_kelamin = $_POST['jenis_kelamin'];
-        $alamat = $_POST['alamat'];
-        $no_hp = $_POST['no_hp'];
-        $divisi = $_POST['divisi'];
+        $tanggal = $_POST['tanggal'];
+        $check_in = $_POST['check_in'];
+        $check_in = date("H:i:s", strtotime($check_in));
+        $check_out = $_POST['check_out'];
+        $check_out = date("H:i:s", strtotime($check_out));
         $submit = $_POST['submit'];
 
-        $query= "UPDATE pegawai SET nama='$nama', nip=$nip, jenis_kelamin='$jenis_kelamin', alamat='$alamat', no_hp='$no_hp', divisi='$divisi' WHERE pegawai.id=$id ";
-
-        print_r($query);
+        $query= "UPDATE attandance SET tanggal='$tanggal',check_in='$check_in',check_out='$check_out' WHERE attandance.id=$id ";
         // apabila tombol submit di tekan
         if ($submit) {
             mysqli_query($conn, $query);
             echo "
             <script>
                 alert('Data Berhasil Diubah!');
-                document.location.href='DataPegawai.php';
+                document.location.href='DataPresensi.php';
             </script>";
         }
  ?>

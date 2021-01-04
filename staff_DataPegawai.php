@@ -12,6 +12,27 @@
         $gaji = mysqli_query($conn,"SELECT*FROM gaji WHERE nama='$staff'");
         $hasilgaji = mysqli_fetch_array($gaji);
         $hasil = mysqli_fetch_array($result);
+
+        $nama = $hasil['nama'];
+        $nip = $hasil['nip'];
+        
+        date_default_timezone_set('Asia/Jakarta');
+        $tanggal = date("Y-m-d");
+        $check_in = date("H:i:s");
+        $check_in = date("H:i:s", strtotime($check_in));
+        $check_out = date("H:i:s");
+        $check_out = date("H:i:s", strtotime($check_out));
+
+    if (isset($_POST['btn-check_in'])) {
+        $absen = "INSERT INTO attandance(id, nama, nip, tanggal, check_in, check_out) VALUES (null,'$nama','$nip','$tanggal','$check_in','')";
+        mysqli_query($conn,$absen);
+        echo "<script>alert('Berhasil Absen Masuk');docuent.location.href ='staff_DataPegawai.php';</script>";
+    }
+    if (isset($_POST['btn-check_out'])) {
+        $absen = "UPDATE attandance SET check_out='$check_out' WHERE attandance.nama='$staff'";
+        mysqli_query($conn,$absen);
+        echo "<script>alert('Berhasil Absen Keluar');docuent.location.href ='staff_DataPegawai.php';</script>";
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -100,7 +121,7 @@
                             <div class="col-md-6">
                                 <div class="profile-head"><br><br>
                                             <h5>
-                                                <p><?= $hasil['nama'];?></p>
+                                                <p><?= $nama;?></p>
                                             </h5>
                                             <h6>
                                                 <p><?=$hasil['divisi'];?></p>
@@ -123,10 +144,15 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="profile-work">
-                                    <p>Presensi Masuk</p>
-                                    <button type="button" class="btn btn-primary" name="check_in">Check In</button><br><br>
-                                    <p>Presensi Keluar</p>
-                                    <button type="button" class="btn btn-danger" name="check_out">Check Out</button>
+                                    <form method="post">
+                                        Tanggal & Jam <br>
+                                        <input type="date" name="tanggal" value="<?php echo date("Y-m-d",time()); ?>" disabled>
+                                        <input type="datetime"  value="<?php echo date("H:i:s",time()); ?>" disabled><br><br>
+                                        <p>Presensi Masuk</p>
+                                        <button type="submit" class="btn btn-primary" name="btn-check_in" onclick="return confirm('Absensi Cukup 1x!')">Check In</button><br><br>
+                                        <p>Presensi Keluar</p>
+                                        <button type="submit" class="btn btn-danger" name="btn-check_out">Check Out</button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="col-md-8">

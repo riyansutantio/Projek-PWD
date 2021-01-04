@@ -16,7 +16,7 @@
             $cari = $_POST['search'];
             $result = mysqli_query($conn,"SELECT*FROM attandance WHERE nama LIKE '%$cari%' OR nip LIKE '%$cari%'");
         }else{
-            $result = mysqli_query($conn,"SELECT*FROM attandance");
+            $result = mysqli_query($conn,"SELECT*FROM attandance ORDER BY tanggal");
         }
 ?>
 
@@ -140,7 +140,7 @@
                                         <a href="editpresensi.php?id=<?= $row['id'];?>">
                                             <button type="button" class="btn btn-warning">Edit</button>
                                         </a>
-                                        <a href="hapuspresnsi.php?id=<?= $row['id'];?>" onclick='return confirm("apakah anda ingin menghapus data?")'>
+                                        <a href="hapuspresensi.php?id=<?= $row['id'];?>" onclick='return confirm("apakah anda ingin menghapus data?")'>
                                             <button type="button" class="btn btn-danger" style="margin-left: 10px;">Hapus</button>
                                         </a>
                                     </td>
