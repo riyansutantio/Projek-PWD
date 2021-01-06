@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
 	<?php  
@@ -9,6 +9,7 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
 
+            // mengganti pasword lama dengan pasword baru
             $update ="UPDATE admin SET password='$password' WHERE nama='$username'" ; 
 
                 mysqli_query($conn,$update);

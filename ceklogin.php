@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 // mengaktifkan session php
 session_start();
  
@@ -15,7 +15,7 @@ $data = mysqli_query($conn,"SELECT * FROM admin WHERE nama='$username' AND passw
 //mendeteksi admin atau staff
 $deteksi = mysqli_fetch_array($data);
  
-// menghitung jumlah data yang ditemukan
+// membedakan level user ketika login
 $cek = mysqli_num_rows($data);
 	if($cek > 0){
 		if ($deteksi['level']=='admin') {

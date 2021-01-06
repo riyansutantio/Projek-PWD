@@ -1,4 +1,4 @@
-<?php  
+ <?php  
     session_start();
     if (!isset($_SESSION['username'])) {
         echo "<script>
@@ -8,14 +8,17 @@
     } 
     $staff = $_SESSION['username'];
         require 'config.php';
+        //query 
         $result = mysqli_query($conn,"SELECT*FROM pegawai WHERE nama='$staff'");
         $gaji = mysqli_query($conn,"SELECT*FROM gaji WHERE nama='$staff'");
+        //memasukkan hasil query kedalam array
         $hasilgaji = mysqli_fetch_array($gaji);
         $hasil = mysqli_fetch_array($result);
 
         $nama = $hasil['nama'];
         $nip = $hasil['nip'];
-        
+
+        // menyesuaikan jam sesuai dengan lokasi WIB
         date_default_timezone_set('Asia/Jakarta');
         $tanggal = date("Y-m-d");
         $check_in = date("H:i:s");
@@ -23,11 +26,13 @@
         $check_out = date("H:i:s");
         $check_out = date("H:i:s", strtotime($check_out));
 
+        //ketika tombol check in ditekan
     if (isset($_POST['btn-check_in'])) {
         $absen = "INSERT INTO attandance(id, nama, nip, tanggal, check_in, check_out) VALUES (null,'$nama','$nip','$tanggal','$check_in','')";
         mysqli_query($conn,$absen);
         echo "<script>alert('Berhasil Absen Masuk');docuent.location.href ='staff_DataPegawai.php';</script>";
     }
+    //ketika tombol check out ditekan
     if (isset($_POST['btn-check_out'])) {
         $absen = "UPDATE attandance SET check_out='$check_out' WHERE attandance.nama='$staff'";
         mysqli_query($conn,$absen);

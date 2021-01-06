@@ -1,4 +1,4 @@
-<?php
+ <?php
 include('config.php');
 session_start();
 if (!isset($_SESSION['username'])) {
@@ -11,9 +11,11 @@ $staff = $_SESSION['username'];
 require_once("dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 $dompdf = new Dompdf();
+//mengambil data dari database berdasarkan session staff yang login
 $query = mysqli_query($conn,"SELECT * FROM gaji WHERE nama='$staff'");
 $row = mysqli_fetch_array($query);
 $tanggal = date('d M Y');
+//isi file yang keluar
 $html = "<center><h3>Laporan Gaji Pegawai</h3><br>Human Resource Management System</center><hr/><br/>";
 $html .= '<table border="" width="100%">
  <tr>

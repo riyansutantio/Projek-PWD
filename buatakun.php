@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 	<?php  
@@ -10,7 +10,7 @@
             $password = $_POST['password'];
 
             $cek = mysqli_query($conn,'SELECT * FROM pegawai');
-            
+            //ketika nama user sama dengan nama di database pegawai, maka user dapat membuat akun. jika tidak maka tidak bisa membuat akun.
             while ($result = mysqli_fetch_array($cek)) {
 	            if ($result['nama'] == $username) {	
             		$insert ="INSERT INTO admin(id, nama, password,level) VALUES ('','$username','$password','staff')"; 

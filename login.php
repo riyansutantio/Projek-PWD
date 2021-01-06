@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 	<?php  
@@ -54,6 +54,7 @@
 					}
 				}
 				?>
+				<!-- form login -->
 			<form method="post" action="ceklogin.php">
 				<table class="table-login" align="Center">
 					<tr >

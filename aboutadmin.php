@@ -15,6 +15,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="https://kit.fontawesome.com/088ea2095a.js" crossorigin="anonymous"></script>
 	<title>Human Resource Management</title>
 	<meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -73,14 +74,7 @@
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <ul class="nav navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <nav class="navbar navbar-light bg-light">
-                                  <form class="form-inline">
-                                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                                  </form>
-                                </nav>
-                            </li>
+                            <li class="nav-item"></li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item"></li>
@@ -99,18 +93,64 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="section">
-                        <p class="content-home">Home Page</p><hr>
-                        <p class="content-home-for">This Project are made with all our heart and our soul</p>
-                        <p class="content-home-desc">
-                            This Project for completing our task in course Dynamic Web Programing<br>
-                            Human Resource Management is the strategic approach to the effective management of people in a company or organization such that <br>they help their business gain a competitive advantage. It is designed to maximize employee performance in service of an employer's strategic objectives
-                        </p><hr>
-                        <p class="content-home-desc">"For Professional Purpose"</p>
+                        <div class="bg-light py-5">
+                          <div class="container py-6">
+                            <div class="row mb-4">
+                              <div class="col-lg-10">
+                                <h2 class="display-4 font-weight-light ml-5" align="center">Our team</h2>
+                                <p class="font-italic text-muted ml-5" align="center">Kelompok 4</p>
+                              </div>
+                        </div>
+                        <hr>
+                        <div class="row text-center">
+                          <div class="col-xl-4 col-sm-6 mb-5 ml-0">
+                            <div class="bg-white rounded shadow-sm py-5 px-4"><img src="img/anggota-1.jpeg" alt="" width="200" height="300" class="img-thumbnail mb-3 ml-0 img-thumbnail shadow-sm">
+                              <h5 class="mb-0 ml-0">Khumaila </h5>
+                              <span class="small text-uppercase text-muted ml-0">Anggota 1</span>
+                              <span class="small text-uppercase text-muted ml-0">L200180198</span>
+                              <ul class="social mb-0 list-inline mt-3 ml-0">
+                                <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+                                <li class="list-inline-item"><a href="https://twitter.com/my_khumaila?s=08" class="social-link"><i class="fa fa-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="https://instagram.com/khumaila_my" class="social-link"><i class="fa fa-instagram"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-xl-4 col-sm-6 mb-5 ml-0">
+                            <div class="bg-white rounded shadow-sm py-5 px-4"><img src="img/anggota-2.jpg" alt="" width="200" height="300" class="img-thumbnail mb-3 ml-0 img-thumbnail shadow-sm">
+                              <h5 class="mb-0 ml-0">Riyan Sutantio B.N. </h5>
+                              <span class="small text-uppercase text-muted ml-0">Anggota 2</span>
+                              <span class="small text-uppercase text-muted ml-0">L200180180</span>
+                              <ul class="social mb-0 list-inline mt-3 ml-0">
+                                <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+                                <li class="list-inline-item"><a href="https://twitter.com/riyanns001" class="social-link"><i class="fa fa-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.instagram.com/riyansutantii" class="social-link"><i class="fa fa-instagram"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-xl-4 col-sm-6 mb-5 ml-0">
+                            <div class="bg-white rounded shadow-sm py-5 px-4"><img src="img/anggota-3.jpeg" alt="" width="200" height="300" class="img-thumbnail mb-3 ml-0 img-thumbnail shadow-sm">
+                              <h5 class="mb-0 ml-0">Ridho Malandi </h5>
+                              <span class="small text-uppercase text-muted ml-0">Anggota 3</span>
+                              <span class="small text-uppercase text-muted ml-0">L200180199</span>
+                              <ul class="social mb-0 list-inline mt-3 ml-0">
+                                <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.instagram.com/rdhmalandi" class="social-link"><i class="fa fa-instagram"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- footer start -->
-            <footer class="footer">
+        </div>
+    </div>
+</body>
+<!-- footer start -->
+<footer class="footer">
                 <div class="container-fluid">
                     <nav>
                         <ul class="footer-menu">
@@ -149,10 +189,8 @@
                         </p>
                     </nav>
                 </div>
-            </footer>
-        </div>
-    </div>
-</body>
+</footer>
+
 <!--   Core JS Files   -->
 <script src="js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="js/core/popper.min.js" type="text/javascript"></script>
